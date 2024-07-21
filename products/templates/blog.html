@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load static %}
+
+		{% block "title" %}
+        <title>Blog || Sellshop</title>
+		{% endblock %}
+
+		{% block "content" %}
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>Blog</h2>
+							<ul class="text-left">
+								<li><a href="{% url "home" %}">Home </a></li>
+								<li><span> // </span>Blog</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+        <!-- blog section start -->
+		<section class="latest-blog section-padding">
+			<div class="container">
+				<ul class="blog-row clearfix">
+					<li>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/1.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">Fashion style fine arts drawing</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 25, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/2.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s Fashion style 2016</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 15, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/3.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s winter Fashion style</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 22, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/4.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">Fashion style fine arts drawing</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 25, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/5.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s Fashion style 2016</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 15, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/6.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s winter Fashion style</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 22, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/7.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">Fashion style fine arts drawing</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 25, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/8.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s Fashion style 2016</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 15, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/9.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s winter Fashion style</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 22, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="pagnation-ul">
+					<ul class="clearfix">
+						<li><a href="#"><i class="mdi mdi-menu-left"></i></a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">...</a></li>
+						<li><a href="#">10</a></li>
+						<li><a href="#"><i class="mdi mdi-menu-right"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<!-- blog section end -->
+		{% endblock %}

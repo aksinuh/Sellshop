@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+{% load static %}
+
+		{% block "title" %}
+        <title>Single Blog || Sellshop</title>
+		{% endblock %}
+
+		{% block "content" %}
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>fashion style fine arts drawing</h2>
+							<ul class="text-left">
+								<li><a href="{% url "home" %}">Home </a></li>
+								<li><span> // </span><a href="{% url "blog" %}">blog </a></li>
+								<li><span> // </span>fashion style fine arts drawing</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+        <!-- blog-section-start -->
+		<section class="pages blog single-blog-area section-padding-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-9">
+						<div class="single-blog-page">
+							<div class="single-blog-img">
+								<img src="{% static 'img/blog/s.jpg' %}" alt="" />
+							</div>
+							<div class="padding30">
+								<div class="blog-text">
+									<div class="post-title">
+										<h3>Fashion style fine arts drawing</h3>
+										<ul class="clearfix">
+											<li><i class="pe-7s-user"></i>By :<a href="#">Rakib</a><span>|</span></li>
+											<li><i class="pe-7s-comment"></i><a href="#">Jun 25, 2016</a><span>|</span></li>
+											<li><i class="pe-7s-like"></i><a href="#">210 Like</a><span>|</span></li>
+											<li><i class="pe-7s-back"></i><a href="#">69 Comments</a></li>
+										</ul>
+									</div>
+									<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
+									<div class="italic">
+										<p>“The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system”,</p>
+									</div>
+									<p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
+									<div class="share-tag clearfix">
+										<ul class="blog-share floatleft">
+											<li><h5>share </h5></li>
+											<li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-linkedin"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-vimeo"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-dribbble"></i></a></li>
+											<li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+										</ul>
+									</div>
+									<div class="about-author comments">
+										<h4>19 comments</h4>
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author2.png' %}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">Gerald Barnes</a></h4>
+												<span class="floatright"><a href="#">Reply</a>  /   <a href="#">Hide</a></span>
+												<span>27 Jun, 2016 at 2:30pm</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget eni Praesent et messages in consectetur.</p>
+											</div>
+										</div>
+									</div>
+									<div class="about-author reply">
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author3.png' %}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">Gregory Hernandez</a></h4>
+												<span class="floatright"><a href="#">Reply</a>  /   <a href="#">Hide</a></span>
+												<span>27 Jun, 2016 at 2:30pm</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget eni Praesent et messages in consectetur.</p>
+											</div>
+										</div>
+									</div>
+									<div class="about-author">
+										<div class="autohr-text">
+											<img src="{% static 'img/blog/author3.png' %}" alt="" />
+											<div class="author-des">
+												<h4><a href="#">Gregory Hernandez</a></h4>
+												<span class="floatright"><a href="#">Reply</a>  /   <a href="#">Hide</a></span>
+												<span>27 Jun, 2016 at 2:30pm</span>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget eni Praesent et messages in consectetur.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="leave-comment">
+									<h4>leave your review</h4>
+									<form action="mail.php" method="post">
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<div class="input-text">
+													<input type="text" name="name" placeholder="Name here" value="" />
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-6">
+												<div class="input-text">
+													<input type="text" name="email" placeholder="Email here" value="" />
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="input-text">
+													<textarea name="comment" id="comment" placeholder="Comment here" rows="4"></textarea>
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="submit-text">
+													<button type="submit" value="submit form">submit comments</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- single post end -->
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-3">
+						<div class="sidebar left-sidebar">
+							<div class="s-side-text">
+								<div class="sidebar-title clearfix">
+									<h4 class="floatleft">Categories</h4>
+									<h5 class="floatright"><a href="#">All</a></h5>
+								</div>
+								<div class="categories left-right-p">
+									<ul id="accordion" class="panel-group clearfix">
+										<li class="panel">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
+												<div class="medium-a">
+													Women
+												</div>
+											</div>
+											<div class="panel-collapse collapse in" id="collapse1">
+												<div class="normal-a">
+													<a href="#">Men Bag</a>
+													<a href="#">Shoes</a>
+													<a href="#">Watch</a>
+													<a href="#">T-shirt</a>
+													<a href="#">shirt</a>
+												</div>
+											</div>
+										</li>
+										<li class="panel">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">
+												<div class="medium-a">
+													Fashion
+												</div>
+											</div>
+											<div class="paypal-dsc panel-collapse collapse" id="collapse2">
+												<div class="normal-a">
+													<a href="#">Men Bag</a>
+													<a href="#">Shoes</a>
+													<a href="#">Watch</a>
+													<a href="#">T-shirt</a>
+													<a href="#">shirt</a>
+												</div>
+											</div>
+										</li>
+										<li class="panel">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
+												<div class="medium-a">
+													Accessories
+												</div>
+											</div>
+											<div class="paypal-dsc panel-collapse collapse" id="collapse3">
+												<div class="normal-a">
+													<a href="#">Men Bag</a>
+													<a href="#">Shoes</a>
+													<a href="#">Watch</a>
+													<a href="#">T-shirt</a>
+													<a href="#">shirt</a>
+												</div>
+											</div>
+										</li>
+										<li class="panel">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse4">
+												<div class="medium-a">
+													Top Brands
+												</div>
+											</div>
+											<div class="paypal-dsc panel-collapse collapse" id="collapse4">
+												<div class="normal-a">
+													<a href="#">Men Bag</a>
+													<a href="#">Shoes</a>
+													<a href="#">Watch</a>
+													<a href="#">T-shirt</a>
+													<a href="#">shirt</a>
+												</div>
+											</div>
+										</li>
+										<li class="panel">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse5">
+												<div class="medium-a">
+													Jewelry
+												</div>
+											</div>
+											<div class="paypal-dsc panel-collapse collapse" id="collapse5">
+												<div class="normal-a">
+													<a href="#">Men Bag</a>
+													<a href="#">Shoes</a>
+													<a href="#">Watch</a>
+													<a href="#">T-shirt</a>
+													<a href="#">shirt</a>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="s-side-text">
+								<div class="sidebar-title clearfix">
+									<h4 class="floatleft">brands</h4>
+									<h5 class="floatright"><a href="#">All</a></h5>
+								</div>
+								<div class="brands-select clearfix">
+									<ul>
+										<li>
+											<a href="#">Offset</a>
+											<a href="#">Ecko Untid</a>
+											<a href="#">Addidas</a>
+											<a href="#">Custo</a>
+											<a href="#">Guccies</a>
+										</li>
+										<li>
+											<a href="#">Unlimited</a>
+											<a href="#">Shoes</a>
+											<a href="#">Watch</a>
+											<a href="#">Color Full</a>
+											<a href="#">Best choice</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="s-side-text">
+								<div class="sidebar-title clearfix">
+									<h4 class="floatleft">recent post</h4>
+								</div>
+								<div class="recent-post clearfix">
+									<ul>
+										<li>
+											<a href="#"><img src="{% static 'img/blog/r1.jpg' %}" alt="" /></a>
+											<h5><a href="#">women’s fashon</a></h5>
+											<span>Jun 25, 2016</span>
+										</li>
+										<li>
+											<a href="#"><img src="{% static 'img/blog/r2.jpg' %}" alt="" /></a>
+											<h5><a href="#">child's fashon</a></h5>
+											<span>Jun 24, 2016</span>
+										</li>
+										<li>
+											<a href="#"><img src="{% static 'img/blog/r3.jpg' %}" alt="" /></a>
+											<h5><a href="#">women’s fashon</a></h5>
+											<span>Jun 22, 2016</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="s-side-text">
+								<div class="banner clearfix">
+									<a href="#"><img src="{% static 'img/products/banner.jpg' %}" alt="" /></a>
+									<div class="banner-text">
+										<h2>best</h2> <br />
+										<h2 class="banner-brand">brand</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- blog section end -->
+        <!-- related post section start -->
+		<section class="related-post latest-blog section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="section-title text-center">
+							<h2>Related Post</h2>
+						</div>
+					</div>
+				</div>
+				<ul class="blog-row">
+					<li>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/4.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">Fashion style fine arts drawing</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 25, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/5.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s Fashion style 2016</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 15, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="l-blog-text">
+									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/6.jpg' %}" alt="" /></a></div>
+									<div class="s-blog-text">
+										<h4><a href="{% url "single_blog" %}">women’s winter Fashion style</a></h4>
+										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
+										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
+									</div>
+									<div class="date-read clearfix">
+										<a href="#"><i class="mdi mdi-clock"></i> jun 22, 2016</a>
+										<a href="{% url "single_blog" %}">read more</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<!-- related post section end -->
+		{% endblock %}
