@@ -10,20 +10,27 @@ class TimeStamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
+        
+        
 class Wishlist(models.Model):
-    product = models.ForeignKey(ProductDetail, on_delete=models.CASCADE, related_name="wishlist_product")
+    product = models.ManyToManyField(ProductDetail, related_name="wishlist_product")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="wish_user")
     
     
-class Cart(models.Model):
-    product = models.ForeignKey(ProductDetail, on_delete=models.CASCADE, related_name="cart_product")
+class Cart(TimeStamp):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cart_user")
+    is_active = models.BooleanField(default=True)
+
+class CartItem(TimeStamp):
+    product = models.ForeignKey(ProductDetail, on_delete=models.CASCADE)
+    cart =  models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    shipping = models.ForeignKey("ShippingHanding", on_delete=models.CASCADE, related_name="cart_shipping")
-    
-class ShippingHanding(models.Model):
-    shipping = models.DecimalField(max_digits=10, decimal_places=2)
-    
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+
 
 class BllingDetails(models.Model):
     name = models.CharField(max_length=50)
@@ -38,11 +45,11 @@ class BllingDetails(models.Model):
     
 class City(models.Model):
     name  = models.CharField(max_length=100)
-    
+    state = models.ForeignKey("State", on_delete=models.CASCADE)
     
 class State(models.Model):
     name = models.CharField(max_length=100)
-        
+    country = models.ForeignKey("Country", on_delete=models.CASCADE) 
         
 class Country(models.Model):
     name = models.CharField(max_length=100)
@@ -59,8 +66,8 @@ class DifferentAddress(models.Model):
     note = models.TextField()
 
 class Order(TimeStamp):
-    product = models.ForeignKey(ProductDetail , on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order_no = models.IntegerField()
     blling = models.ForeignKey(BllingDetails, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    differentAddress = models.ForeignKey(DifferentAddress, on_delete=models.CASCADE, null=True, blank=True)

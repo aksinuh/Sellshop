@@ -12,11 +12,11 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="pages-title-text text-center">
-							<h2>men’s white t-shirt</h2>
+							<h2>{{ detail.product.name}}</h2>
 							<ul class="text-left">
 								<li><a href="{% url "home" %}">Home </a></li>
 								<li><span> // </span><a href="shop.html">shop </a></li>
-								<li><span> // </span>men’s white t-shirt</li>
+								<li><span> // </span>{{ detail.product.name}}</li>
 							</ul>
 						</div>
 					</div>
@@ -74,8 +74,8 @@
 						<div class="col-xs-12 col-sm-7 col-md-8">
 							<div class="quick-right">
 								<div class="list-text">
-									<h3>men’s White t-shirt</h3>
-									<span>Summer men’s fashion</span>
+									<h3>{{ detail.product.name}}</h3>
+									<span>{{ detail.category.name}}</span>
 									<div class="ratting floatright">
 										<p>( 27 Rating )</p>
 										<i class="mdi mdi-star"></i>
@@ -84,8 +84,12 @@
 										<i class="mdi mdi-star-half"></i>
 										<i class="mdi mdi-star-outline"></i>
 									</div>
-									<h5><del>$79.30</del> $69.30</h5>
-									<p>There are many variations of passages of Lorem Ipsum available, but the majority have be suffered alteration in some form, by injected humour, or randomised words which donot look even slightly believable. If you are going to use a passage of Lorem Ipsum, you neede be sure there isn't anything embarrassing hidden in the middle of text. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+									{% if detail.discount%}
+									<h5><del>$ {{detail.price}}</del> $ {{ detail.discounted_price}}</h5>
+									{% else %}
+									<h5>$ {{detail.price}}</h5>
+									{% endif %}
+									<p>{{ detail.description}}</p>
 									<div class="all-choose">
 										<div class="s-shoose">
 											<h5>Color</h5>

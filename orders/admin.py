@@ -1,31 +1,26 @@
 from django.contrib import admin
 from .models import (
-    TimeStamp, Wishlist, Cart, Order,
-    ShippingHanding, BllingDetails,
+    Wishlist, Cart, Order,
+     BllingDetails,
     City, State, Country, DifferentAddress
     
 )
 
 # Register your models here.
 
-admin.site.register(TimeStamp)
+
 
 
 @admin.register(Wishlist)
 class Wishlistadmin(admin.ModelAdmin):
-    list_display = ["id", "product", "user"]
+    list_display = ["id", "user"]
     list_display_links = ["user"]
     
 @admin.register(Cart)
 class Cartadmin(admin.ModelAdmin):
-    list_display = ["id", "product", "user", "quantity","shipping"]
+    list_display = ["id",  "user"]
     list_display_links = ["user"]
     
-    
-@admin.register(ShippingHanding)
-class ShippingHandingadmin(admin.ModelAdmin):
-    list_display = ["id", "shipping"]
-    list_display_links = ["shipping"]
     
 @admin.register(BllingDetails)
 class BllingDetailsadmin(admin.ModelAdmin):
@@ -60,5 +55,5 @@ class DifferentAddressadmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class Orderadmin(admin.ModelAdmin):
-    list_display = ["id", "user", "product", "order_no", "blling", "cart"]
+    list_display = ["id", "user", "order_no", "blling", "cart"]
     list_display_links = ["user"]

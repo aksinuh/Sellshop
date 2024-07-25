@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'orders',
     'products',
     'accounts',
+    'psycopg',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'sellshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sellshopDB',
+        'USER': 'shop',
+        'PASSWORD': 'user11920',
+        'HOST': 'localhost',
+        'PORT': '5646'
     }
 }
 
@@ -124,8 +129,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR, 'static'
 ]
-# MEDIA_URL='/media/'
-# MEDIA_ROOT = BASE_DIR /'uploads'
+
+MEDIA_URL='/media/'
+MEDIA_ROOT = BASE_DIR /'uploads'
 
 
 

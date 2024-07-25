@@ -12,11 +12,11 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="pages-title-text text-center">
-							<h2>fashion style fine arts drawing</h2>
+							<h2>{{ blog.title }}</h2>
 							<ul class="text-left">
 								<li><a href="{% url "home" %}">Home </a></li>
 								<li><span> // </span><a href="{% url "blog" %}">blog </a></li>
-								<li><span> // </span>fashion style fine arts drawing</li>
+								<li><span> // </span>{{ blog.title }}</li>
 							</ul>
 						</div>
 					</div>
@@ -31,24 +31,24 @@
 					<div class="col-xs-12 col-sm-8 col-md-9">
 						<div class="single-blog-page">
 							<div class="single-blog-img">
-								<img src="{% static 'img/blog/s.jpg' %}" alt="" />
+								<img src="{{ blog.image.url}}" alt="" />
 							</div>
 							<div class="padding30">
 								<div class="blog-text">
 									<div class="post-title">
-										<h3>Fashion style fine arts drawing</h3>
+										<h3>{{ blog.title }}</h3>
 										<ul class="clearfix">
-											<li><i class="pe-7s-user"></i>By :<a href="#">Rakib</a><span>|</span></li>
-											<li><i class="pe-7s-comment"></i><a href="#">Jun 25, 2016</a><span>|</span></li>
+											<li><i class="pe-7s-user"></i>By :<a href="#">{{blog.user}}</a><span>|</span></li>
+											<li><i class="pe-7s-comment"></i><a href="#">{{blog.created_at|date:"d F - Y"}}</a><span>|</span></li>
 											<li><i class="pe-7s-like"></i><a href="#">210 Like</a><span>|</span></li>
 											<li><i class="pe-7s-back"></i><a href="#">69 Comments</a></li>
 										</ul>
 									</div>
-									<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
+									<p>{{ blog.description }}</p>
 									<div class="italic">
-										<p>“The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system”,</p>
+										<p>“{{blog.note}}”,</p>
 									</div>
-									<p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
+									<p>{{blog.description2}}</p>
 									<div class="share-tag clearfix">
 										<ul class="blog-share floatleft">
 											<li><h5>share </h5></li>
@@ -293,7 +293,7 @@
 				</div>
 				<ul class="blog-row">
 					<li>
-						<div class="row">
+						{% comment %} <div class="row">
 							<div class="col-sm-4">
 								<div class="l-blog-text">
 									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/4.jpg' %}" alt="" /></a></div>
@@ -335,7 +335,7 @@
 										<a href="{% url "single_blog" %}">read more</a>
 									</div>
 								</div>
-							</div>
+							</div> {% endcomment %}
 						</div>
 					</li>
 				</ul>

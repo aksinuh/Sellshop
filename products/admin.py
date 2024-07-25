@@ -1,13 +1,14 @@
 from django.contrib import admin
 from .models import (
-    TimeStamp, BlogComment, SingleBlog,
+    BlogComment, SingleBlog,
     Product, ProductCategory, ProductDetail,
-    Blog, Discount, Like, Color, Size, 
-    ImageProduct, Rating, Category, Brand
+     Discount, Like, Color, Size, 
+    ImageProduct,  Category, Brand
 )
+
 # Register your models here.
 
-admin.site.register(TimeStamp)
+
 
 @admin.register(BlogComment)
 class BlogCommentadmin(admin.ModelAdmin):
@@ -17,13 +18,9 @@ class BlogCommentadmin(admin.ModelAdmin):
 
 @admin.register(SingleBlog)
 class SingleBlogadmin(admin.ModelAdmin):
-    list_display = ["id", "title", "user", "blog", "description"]
+    list_display = ["id", "title", "user", "description"]
     list_display_links = ["title"]
     
-@admin.register(Blog)
-class Blogadmin(admin.ModelAdmin):
-    list_display = ["id", "title", "description"]
-    list_display_links = ["title"]
     
     
 @admin.register(Discount)
@@ -43,35 +40,36 @@ class Coloradmin(admin.ModelAdmin):
     list_display = ["id", "name"]
     list_display_links = ["name"]
 
+
 @admin.register(Size)
 class Sizeadmin(admin.ModelAdmin):
     list_display = ["id", "name"]
     list_display_links = ["name"]
+    
     
 @admin.register(ImageProduct)
 class ImageProductadmin(admin.ModelAdmin):
     list_display = ["id"]
     list_display_links = ["id"]
     
-@admin.register(Rating)
-class Ratingadmin(admin.ModelAdmin):
-    list_display = ["id", "value", "product"]
-    list_display_links = ["value"]
-    
+
 @admin.register(Product)
 class Productadmin(admin.ModelAdmin):
     list_display = ["id", "name"]
     list_display_links = ["name"]
     
+    
 @admin.register(ProductDetail)
 class ProductDetailadmin(admin.ModelAdmin):
-    list_display = ["id", "discount", "price", "size", "color", "description", "product"]
-    list_display_links = ["discount"]
+    list_display = ["id", "product", "price", "description", "discount"]
+    list_display_links = ["product"]
+    
     
 @admin.register(Category)
 class Categoryadmin(admin.ModelAdmin):
     list_display = ["id", "name","parent"]
     list_display_links = ["name"]
+    
     
 @admin.register(Brand)
 class Brandadmin(admin.ModelAdmin):

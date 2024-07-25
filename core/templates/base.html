@@ -100,58 +100,17 @@
 								<nav>
 									<ul>
 										<li><a href="{% url "home" %}">Home</a>
-											<ul class="dropdown">
-												<li><a href="{% url "home" %}">Home version one</a></li>
-												<li><a href="index-2.html">Home version two</a></li>
-											</ul>
-										</li>
-										<li><a href="shop.html">Shop</a>
-											<ul class="magamenu">
-												<li class="banner"><a href="shop.html"><img src="{% static 'img/maga1.png' %}" alt="" /></a></li>
-												<li><h5>men’s wear</h5>
-													<ul>
-														<li><a href="#">Shirts & Top</a></li>
-														<li><a href="#">Shoes</a></li>
-														<li><a href="#">Dresses</a></li>
-														<li><a href="#">Shemwear</a></li>
-														<li><a href="#">Jeans</a></li>
-														<li><a href="#">Sweaters</a></li>
-														<li><a href="#">Jacket</a></li>
-														<li><a href="#">Men Watch</a></li>
-													</ul>
-												</li>
-												<li><h5>women’s wear</h5>
-													<ul>
-														<li><a href="#">Shirts & Tops</a></li>
-														<li><a href="#">Shoes</a></li>
-														<li><a href="#">Dresses</a></li>
-														<li><a href="#">Shemwear</a></li>
-														<li><a href="#">Jeans</a></li>
-														<li><a href="#">Sweaters</a></li>
-														<li><a href="#">Jacket</a></li>
-														<li><a href="#">Women Watch</a></li>
-													</ul>
-												</li>
-												<li class="banner"><a href="shop.html"><img src="{% static 'img/maga2.png' %}" alt="" /></a></li>
-											</ul>
 										</li>
 										<li><a href="#">Pages</a>
 											<ul class="dropdown">
 												<li><a href="{% url "wishlist" %}">Wishlist</a></li>
 												<li><a href="{% url "checkout" %}">Checkout</a></li>
 												<li><a href="{% url "cart" %}">Cart</a></li>
-												<li><a href="product-grid.html">Product Grid View</a></li>
 												<li><a href="{% url "product_list" %}">Product List View</a></li>
-												<li><a href="{% url "single_product" %}">Single Product</a></li>
 												<li><a href="{% url "error_404" %}">404 page</a></li>
 											</ul>
 										</li>
 										<li><a href="{% url "blog" %}">Blog</a>
-											<ul class="dropdown">
-												<li><a href="blog-style-1.html">Blog Style One</a></li>
-												<li><a href="blog-style-2.html">Blog Style Two</a></li>
-												<li><a href="{% url "single_blog" %}">Single Blog</a></li>
-											</ul>
 										</li>
 										<li><a href="{% url "about" %}">About</a></li>
 										<li><a href="{% url "contact_us" %}">Contact</a></li>
@@ -202,18 +161,11 @@
 													<li><a href="{% url "wishlist" %}">Wishlist</a></li>
 													<li><a href="{% url "checkout" %}">Checkout</a></li>
 													<li><a href="{% url "cart" %}">Cart</a></li>
-													<li><a href="product-grid.html">Product Grid View</a></li>
-													<li><a href="{% url "product_list" %}">Product List View</a></li>
-													<li><a href="{% url "single_product" %}">Single Product</a></li>
+													<li><a href="{% url "product_list" %}">Product List View</a></li>												
 													<li><a href="{% url "error_404" %}">404 page</a></li>
 												</ul>
 											</li>
 											<li><a href="{% url "blog" %}">Blog</a>
-												<ul>
-													<li><a href="blog-style-1.html">Blog Style One</a></li>
-													<li><a href="blog-style-2.html">Blog Style Two</a></li>
-													<li><a href="{% url "single_blog" %}">Single Blog</a></li>
-												</ul>
 											</li>
 											<li><a href="{% url "about" %}">About</a></li>
 											<li><a href="{% url "contact_us" %}">Contact</a></li>
@@ -465,5 +417,7 @@
         <script src="{% static 'js/plugins.js' %}"></script>
 		<!-- main js -->
         <script src="{% static 'js/main.js' %}"></script>
+
+		<script src="{% static 'modernizr-2.8.3.min.js' %}"></script>
     </body>
 </html>
