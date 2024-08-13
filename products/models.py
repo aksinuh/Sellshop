@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from decimal import Decimal
+from django.utils import timezone
 # Create your models here.
 User = get_user_model()
 
@@ -38,7 +39,7 @@ class Like(models.Model):
     
 class Color(models.Model):
     name = models.CharField(max_length=50)
-    
+    hex_value = models.CharField(max_length=7)
     def __str__(self) -> str:
         return self.name
     
@@ -52,12 +53,14 @@ class Size(models.Model):
     
 class ImageProduct(models.Model):
     image = models.ImageField(upload_to="product_img")
-    product = models.ForeignKey("ProductDetail", on_delete=models.CASCADE)
+    product = models.ForeignKey("ProductDetail", on_delete=models.CASCADE, related_name= "product_image")
+    is_primary = models.BooleanField(default=False)
     
     
 class Product(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="image_product")
+    bestbrend = models.BooleanField(default=False)
     
     def __str__(self) -> str:
         return self.name
@@ -68,27 +71,31 @@ class ProductDetail(models.Model):
     product =models.ForeignKey(Product, on_delete=models.CASCADE ,related_name= "product")
     color = models.ManyToManyField(Color)
     size = models.ManyToManyField(Size)
-    gty = models.IntegerField()
+    gty = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.ForeignKey(Discount, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ForeignKey("ProductCategory", on_delete=models.CASCADE)
     shipping = models.DecimalField(max_digits=10, decimal_places=2)
     brend = models.ForeignKey("Brand", on_delete= models.CASCADE, related_name= "brand",null= True, blank=True)
     tag = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
+
     def discounted_price(self):
         if self.discount:
             discount_rate = Decimal(self.discount.rate) / Decimal(100)
             return round(self.price * (1 - discount_rate),2)
         return self.price
     
+    def __str__(self) -> str:
+        return self.product.name
     
 class Category(models.Model):
     name = models.CharField( max_length=100)
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, related_name="categorys", null=True, blank=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, related_name="sub_categorys", null=True, blank=True)
     
     def __str__(self) -> str:
-        return self.name
+        return self.name 
     
 class Brand(models.Model):
     name = models.CharField(max_length=50)
@@ -103,3 +110,4 @@ class ProductCategory(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    

@@ -5,4 +5,5 @@ urlpatterns = [
     path("contact_us/",contact_us, name="contact_us"),
     path("error_404/",error_404, name="error_404" ),
     
+    
 ]

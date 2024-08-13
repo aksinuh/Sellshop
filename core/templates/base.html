@@ -61,7 +61,11 @@
 									<li>
 										<a href="#"><i class="mdi mdi-account"></i></a>
 										<ul>
+											{% if request.user.is_authenticated %}
+											<li><a href="{% url "logout" %}">Log out</a></li>
+											{% else%}
 											<li><a href="{% url "login" %}">Login</a></li>
+											{%endif%}
 											<li><a href="{% url "login" %}">Registar</a></li>
 											<li><a href="{% url "my_account" %}">My account</a></li>
 										</ul>
@@ -417,7 +421,7 @@
         <script src="{% static 'js/plugins.js' %}"></script>
 		<!-- main js -->
         <script src="{% static 'js/main.js' %}"></script>
-
+		<script src="{% static 'js/script.js' %}"></script>
 		<script src="{% static 'modernizr-2.8.3.min.js' %}"></script>
     </body>
 </html>

@@ -38,7 +38,7 @@
 									<div class="post-title">
 										<h3>{{ blog.title }}</h3>
 										<ul class="clearfix">
-											<li><i class="pe-7s-user"></i>By :<a href="#">{{blog.user}}</a><span>|</span></li>
+											<li><i class="pe-7s-user"></i>By :<a href="#">{{blog.user.username}}</a><span>|</span></li>
 											<li><i class="pe-7s-comment"></i><a href="#">{{blog.created_at|date:"d F - Y"}}</a><span>|</span></li>
 											<li><i class="pe-7s-like"></i><a href="#">210 Like</a><span>|</span></li>
 											<li><i class="pe-7s-back"></i><a href="#">69 Comments</a></li>
@@ -135,86 +135,22 @@
 								</div>
 								<div class="categories left-right-p">
 									<ul id="accordion" class="panel-group clearfix">
+										{% for category in categorys%}
 										<li class="panel">
-											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
+											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse4{{ forloop.counter }}">
 												<div class="medium-a">
-													Women
+													{{ category.name}}
 												</div>
 											</div>
-											<div class="panel-collapse collapse in" id="collapse1">
+											<div class="paypal-dsc panel-collapse collapse {% if forloop.first %}in{% endif %}" id="collapse4{{ forloop.counter }}">
+												{% for categor in category.sub_categorys.all %}
 												<div class="normal-a">
-													<a href="#">Men Bag</a>
-													<a href="#">Shoes</a>
-													<a href="#">Watch</a>
-													<a href="#">T-shirt</a>
-													<a href="#">shirt</a>
+													<a href="#">{{categor.name}}</a>
 												</div>
+												{% endfor %}
 											</div>
 										</li>
-										<li class="panel">
-											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">
-												<div class="medium-a">
-													Fashion
-												</div>
-											</div>
-											<div class="paypal-dsc panel-collapse collapse" id="collapse2">
-												<div class="normal-a">
-													<a href="#">Men Bag</a>
-													<a href="#">Shoes</a>
-													<a href="#">Watch</a>
-													<a href="#">T-shirt</a>
-													<a href="#">shirt</a>
-												</div>
-											</div>
-										</li>
-										<li class="panel">
-											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
-												<div class="medium-a">
-													Accessories
-												</div>
-											</div>
-											<div class="paypal-dsc panel-collapse collapse" id="collapse3">
-												<div class="normal-a">
-													<a href="#">Men Bag</a>
-													<a href="#">Shoes</a>
-													<a href="#">Watch</a>
-													<a href="#">T-shirt</a>
-													<a href="#">shirt</a>
-												</div>
-											</div>
-										</li>
-										<li class="panel">
-											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse4">
-												<div class="medium-a">
-													Top Brands
-												</div>
-											</div>
-											<div class="paypal-dsc panel-collapse collapse" id="collapse4">
-												<div class="normal-a">
-													<a href="#">Men Bag</a>
-													<a href="#">Shoes</a>
-													<a href="#">Watch</a>
-													<a href="#">T-shirt</a>
-													<a href="#">shirt</a>
-												</div>
-											</div>
-										</li>
-										<li class="panel">
-											<div data-toggle="collapse" data-parent="#accordion" data-target="#collapse5">
-												<div class="medium-a">
-													Jewelry
-												</div>
-											</div>
-											<div class="paypal-dsc panel-collapse collapse" id="collapse5">
-												<div class="normal-a">
-													<a href="#">Men Bag</a>
-													<a href="#">Shoes</a>
-													<a href="#">Watch</a>
-													<a href="#">T-shirt</a>
-													<a href="#">shirt</a>
-												</div>
-											</div>
-										</li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>
@@ -225,20 +161,12 @@
 								</div>
 								<div class="brands-select clearfix">
 									<ul>
-										<li>
-											<a href="#">Offset</a>
-											<a href="#">Ecko Untid</a>
-											<a href="#">Addidas</a>
-											<a href="#">Custo</a>
-											<a href="#">Guccies</a>
-										</li>
-										<li>
-											<a href="#">Unlimited</a>
-											<a href="#">Shoes</a>
-											<a href="#">Watch</a>
-											<a href="#">Color Full</a>
-											<a href="#">Best choice</a>
-										</li>
+										{% for brand1 in group1_brands%}
+										<li><a href="#">{{brand1.name}}</a></li>
+										{% endfor %}
+										{% for brand2 in group2_brands%}
+										<li><a href="#">{{brand2.name}}</a></li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>
@@ -248,27 +176,19 @@
 								</div>
 								<div class="recent-post clearfix">
 									<ul>
+										{%for products in latest_products%}
 										<li>
-											<a href="#"><img src="{% static 'img/blog/r1.jpg' %}" alt="" /></a>
-											<h5><a href="#">women’s fashon</a></h5>
-											<span>Jun 25, 2016</span>
+											<a href="{% url "single_product" products.id%}"><img src="{{ products.product.image.url}}" alt="" /></a>
+											<h5><a href="#">{{ products.product.name}}</a></h5>
+											<span>{{products.category.name}}</span>
 										</li>
-										<li>
-											<a href="#"><img src="{% static 'img/blog/r2.jpg' %}" alt="" /></a>
-											<h5><a href="#">child's fashon</a></h5>
-											<span>Jun 24, 2016</span>
-										</li>
-										<li>
-											<a href="#"><img src="{% static 'img/blog/r3.jpg' %}" alt="" /></a>
-											<h5><a href="#">women’s fashon</a></h5>
-											<span>Jun 22, 2016</span>
-										</li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>
 							<div class="s-side-text">
 								<div class="banner clearfix">
-									<a href="#"><img src="{% static 'img/products/banner.jpg' %}" alt="" /></a>
+									<a href="{% url 'single_product' bestbrend.id%}"><img src="{{bestbrend.image.url}}" alt="" /></a>
 									<div class="banner-text">
 										<h2>best</h2> <br />
 										<h2 class="banner-brand">brand</h2>
@@ -293,8 +213,8 @@
 				</div>
 				<ul class="blog-row">
 					<li>
-						{% comment %} <div class="row">
-							<div class="col-sm-4">
+						<div class="row">
+							{% comment %} <div class="col-sm-4">
 								<div class="l-blog-text">
 									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/4.jpg' %}" alt="" /></a></div>
 									<div class="s-blog-text">
@@ -304,34 +224,6 @@
 									</div>
 									<div class="date-read clearfix">
 										<a href="#"><i class="mdi mdi-clock"></i> jun 25, 2016</a>
-										<a href="{% url "single_blog" %}">read more</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="l-blog-text">
-									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/5.jpg' %}" alt="" /></a></div>
-									<div class="s-blog-text">
-										<h4><a href="{% url "single_blog" %}">women’s Fashion style 2016</a></h4>
-										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
-										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
-									</div>
-									<div class="date-read clearfix">
-										<a href="#"><i class="mdi mdi-clock"></i> jun 15, 2016</a>
-										<a href="{% url "single_blog" %}">read more</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="l-blog-text">
-									<div class="banner"><a href="{% url "single_blog" %}"><img src="{% static 'img/blog/6.jpg' %}" alt="" /></a></div>
-									<div class="s-blog-text">
-										<h4><a href="{% url "single_blog" %}">women’s winter Fashion style</a></h4>
-										<span>By : <a href="#">Rakib</a> | <a href="#">210 Like</a> | <a href="#">69 Comments</a></span>
-										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour....</p>
-									</div>
-									<div class="date-read clearfix">
-										<a href="#"><i class="mdi mdi-clock"></i> jun 22, 2016</a>
 										<a href="{% url "single_blog" %}">read more</a>
 									</div>
 								</div>

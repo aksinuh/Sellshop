@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_filters%}
 
 		{% block "title" %}
         <title>About || Sellshop</title>
@@ -31,17 +32,16 @@
 					<div class="main-padding section-padding-top clearfix">
 						<div class="col-sm-12 col-md-5">
 							<div class="about-img">
-								<img src="{% static 'img/about/l.jpg' %}" alt="" />
+								<img src="{{about.image.url}}" alt="" />
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="about-text">
 								<div class="about-author">
-									<h4>An Multipurpose & Creative assembly of <br /> fashion store</h4>
+									<h4>{{about.title|slice:":39"}} <br /> {{about.title|slice:"39:"}}</h4>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia is be deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit. voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+								<p>{{about.description|first_n_words:91}}</p> <br /> <p>{{about.description|rest_of_words:91}}</p>
 								
-								<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
 							</div>
 						</div>
 					</div>
@@ -60,14 +60,15 @@
 					</div>
 				</div>
 				<div class="row text-center">
+					{% for creativ in creative%}
 					<div class="col-xs-12 col-sm-6 col-md-3">
 						<div class="single-member">
 							<div class="member-img">
-								<a href="#"><img src="{% static 'img/about/1.jpg' %}" alt="Team Member" /></a>
+								<a href="#"><img src="{{ creativ.image.url}}" alt="Team Member" /></a>
 							</div>
 							<div class="share-member">
 								<div class="member-title">
-									<h4>Jonathan Edwards</h4>
+									<h4>{{creativ.name}}</h4>
 								</div>
 								<div class="member-btn">	
 									<a href="#"><i class="mdi mdi-facebook"></i></a>
@@ -79,66 +80,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- single member end -->
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="single-member">
-							<div class="member-img">
-								<a href="#"><img src="{% static 'img/about/2.jpg' %}" alt="Team Member" /></a>
-							</div>
-							<div class="share-member">
-								<div class="member-title">
-									<h4>Jonathan Edwards</h4>
-								</div>
-								<div class="member-btn">	
-									<a href="#"><i class="mdi mdi-facebook"></i></a>
-									<a href="#"><i class="mdi mdi-twitter"></i></a>
-									<a href="#"><i class="mdi mdi-google-plus"></i></a>
-									<a href="#"><i class="mdi mdi-dribbble"></i></a>
-									<a href="#"><i class="mdi mdi-rss"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single member end -->
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="single-member">
-							<div class="member-img">
-								<a href="#"><img src="{% static 'img/about/3.jpg' %}" alt="Team Member" /></a>
-							</div>
-							<div class="share-member">
-								<div class="member-title">
-									<h4>Jonathan Edwards</h4>
-								</div>
-								<div class="member-btn">	
-									<a href="#"><i class="mdi mdi-facebook"></i></a>
-									<a href="#"><i class="mdi mdi-twitter"></i></a>
-									<a href="#"><i class="mdi mdi-google-plus"></i></a>
-									<a href="#"><i class="mdi mdi-dribbble"></i></a>
-									<a href="#"><i class="mdi mdi-rss"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- single member end -->
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="single-member">
-							<div class="member-img">
-								<a href="#"><img src="{% static 'img/about/4.jpg' %}" alt="Team Member" /></a>
-							</div>
-							<div class="share-member">
-								<div class="member-title">
-									<h4>Jonathan Edwards</h4>
-								</div>
-								<div class="member-btn">	
-									<a href="#"><i class="mdi mdi-facebook"></i></a>
-									<a href="#"><i class="mdi mdi-twitter"></i></a>
-									<a href="#"><i class="mdi mdi-google-plus"></i></a>
-									<a href="#"><i class="mdi mdi-dribbble"></i></a>
-									<a href="#"><i class="mdi mdi-rss"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
+					{% endfor %}
 					<!-- single member end -->
 				</div>
 			</div>

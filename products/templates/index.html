@@ -100,11 +100,13 @@
 											{% if product.tag %}
 											<div class="pro-type">
 												<span>new</span>
-												{% if product.discount%}
-												<span>{{ product.discount.rate }}%</span>
-												{% endif %}
 											</div>
-											{% endif %}											
+											{% endif %}	
+											{% if product.discount%}
+											<div class="pro-type">
+												<span>{{ product.discount.rate }}%</span>
+											</div>
+											{% endif %}							
 											<a href="{% url "single_product" product.id %}"><img src="{{ product.product.image.url}}" alt="Product Title" /></a>
 											<div class="actions-btn">
 												<a href="#"><i class="mdi mdi-cart"></i></a>
@@ -255,9 +257,11 @@
 													{% if product.tag %}
 													<div class="pro-type">
 														<span>new</span>
-														{% if product.discount%}
+													</div>
+													{% endif %}	
+													{% if product.discount%}
+													<div class="pro-type">
 														<span>{{ product.discount.rate }}%</span>
-														{% endif %}
 													</div>
 													{% endif %}											
 													<a href="#"><img src="{{ product.product.image.url}}" alt="Product Title" /></a>
@@ -298,9 +302,11 @@
 													{% if product.tag %}
 													<div class="pro-type">
 														<span>new</span>
-														{% if product.discount%}
+													</div>
+													{% endif %}	
+													{% if product.discount%}
+													<div class="pro-type">
 														<span>{{ product.discount.rate }}%</span>
-														{% endif %}
 													</div>
 													{% endif %}											
 													<a href="#"><img src="{{ product.product.image.url}}" alt="Product Title" /></a>
@@ -341,9 +347,11 @@
 													{% if product.tag %}
 													<div class="pro-type">
 														<span>new</span>
-														{% if product.discount%}
+													</div>
+													{% endif %}	
+													{% if product.discount%}
+													<div class="pro-type">
 														<span>{{ product.discount.rate }}%</span>
-														{% endif %}
 													</div>
 													{% endif %}											
 													<a href="#"><img src="{{ product.product.image.url}}" alt="Product Title" /></a>

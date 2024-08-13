@@ -34,39 +34,35 @@
 								<div class="single-quick-image text-center">
 									<div class="list-img">
 										<div class="product-img tab-content">
-											<div class="simpleLens-container tab-pane fade in" id="sin-1">
+										{% for image in detail.product_image.all%}
+											<div class="simpleLens-container tab-pane {% if image.is_primary %}active fade in{% else %}fade in{% endif %}" id="sin-{{ forloop.counter }}">
 												<div class="pro-type">
-													<span>new</span>
+													{% if image.is_primary %}
+													{% if detail.tag %}
+													<div class="pro-type">
+														<span>new</span>
+													</div>
+													{% endif %}	
+													{% if detail.discount%}
+													<div class="pro-type">
+														<span>{{ detail.discount.rate }}%</span>
+													</div>
+													{% endif %}
+													{% endif %}
 												</div>
-												<a class="simpleLens-image" data-lens-image="{% static 'img/products/z1.jpg' %}" href="#"><img src="{% static 'img/products/z1.jpg' %}" alt="" class="simpleLens-big-image"></a>
+												<a class="simpleLens-image" data-lens-image="{{ image.image.url }}" href="#">
+													<img src="{{ image.image.url }}" alt="" class="simpleLens-big-image">
+												</a>
 											</div>
-											<div class="simpleLens-container tab-pane active fade in" id="sin-2">
-												<div class="pro-type sell">
-													<span>sell</span>
-												</div>
-												<a class="simpleLens-image" data-lens-image="{% static 'img/products/z2.jpg' %}" href="#"><img src="{% static 'img/products/z2.jpg' %}" alt="" class="simpleLens-big-image"></a>
-											</div>
-											<div class="simpleLens-container tab-pane fade in" id="sin-3">
-												<div class="pro-type">
-													<span>-15%</span>
-												</div>
-												<a class="simpleLens-image" data-lens-image="{% static 'img/products/z3.jpg' %}" href="#"><img src="{% static 'img/products/z3.jpg' %}" alt="" class="simpleLens-big-image"></a>
-											</div>
-											<div class="simpleLens-container tab-pane fade in" id="sin-4">
-												<div class="pro-type">
-													<span>new</span>
-												</div>
-												<a class="simpleLens-image" data-lens-image="{% static 'img/products/z4.jpg' %}" href="#"><img src="{% static 'img/products/z4.jpg' %}" alt="" class="simpleLens-big-image"></a>
-											</div>
+										{% endfor %}
 										</div>
 									</div>
 								</div>
 								<div class="quick-thumb">
 									<ul class="product-slider">
-										<li><a data-toggle="tab" href="#sin-1"> <img src="{% static 'img/products/s1.jpg' %}" alt="quick view" /> </a></li>
-										<li class="active"><a data-toggle="tab" href="#sin-2"> <img src="{% static 'img/products/s2.jpg' %}" alt="small image" /> </a></li>
-										<li><a data-toggle="tab" href="#sin-3"> <img src="{% static 'img/products/s3.jpg' %}" alt="small image" /> </a></li>
-										<li><a data-toggle="tab" href="#sin-4"> <img src="{% static 'img/products/s4.jpg' %}" alt="small image" /> </a></li>
+										{% for image in detail.product_image.all%}
+											<li class="{% if forloop.first %}active{% endif %}"><a data-toggle="tab" href="#sin-{{ forloop.counter }}"> <img src="{{ image.image.url }}" alt="quick view" /> </a></li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>
@@ -94,43 +90,49 @@
 										<div class="s-shoose">
 											<h5>Color</h5>
 											<div class="color-select clearfix">
-												<span></span>
-												<span class="outline"></span>
-												<span></span>
-												<span></span>
-											</div>
+											{% for color in detail.color.all %}
+												<span class="{% if forloop.first %}outline{% endif %}" style="background-color: {{ color.hex_value }};" onclick="selectColor(this)"></span>
+											
+											{% endfor %}
+											
+
 										</div>
+									</div>
 										<div class="s-shoose">
 											<h5>size</h5>
 											<div class="size-drop">
 												<div class="btn-group">
-													<button type="button" class="btn">XL</button>
+													<button type="button" class="btn" id="selected-size">{{ detail.size.first.name }}</button>
 													<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 														<span class=""><i class="mdi mdi-chevron-down"></i></span>
 													</button>
 													<ul class="dropdown-menu">
-														<li><a href="#">Xl</a></li>
-														<li><a href="#">SL</a></li>
-														<li><a href="#">S</a></li>
-														<li><a href="#">L</a></li>
+														{% for size in detail.size.all %}
+														<li><a href="#" class="size-option" data-size="{{ size.name }}">{{ size.name }}</a></li>
+														{% endfor %}
 													</ul>
 												</div>
 											</div>
 										</div>
 										<div class="s-shoose">
 											<h5>qty</h5>
-											<form action="#" method="POST">
+											<form method="POST" action="">
+												{% csrf_token %}
 												<div class="plus-minus">
-													<a class="dec qtybutton">-</a>
-													<input type="text" value="02" name="qtybutton" class="plus-minus-box">
-													<a class="inc qtybutton">+</a>
+													<a class="dec qtybutton" href="#" onclick="updateQuantity(-1); return false;">-</a>
+													<input type="text" value="{{ quantity }}" name="qtybutton" class="plus-minus-box" id="qtybutton">
+													<a class="inc qtybutton" href="#" onclick="updateQuantity(1); return false;">+</a>
 												</div>
+												{% comment %} <button type="submit">Miqdarı təyin et</button> {% endcomment %}
 											</form>
+											<div id="quantity-message" style="color: red;">
+												{{ error_message }}
+											</div>
 										</div>
 									</div>
 									<div class="list-btn">
 										<a href="#">add to cart</a>
-										<a href="#">wishlist</a>
+										<a href="#" onclick="submitWishlistForm(); return false;">wishlist</a>
 										<a href="#" data-toggle="modal" data-target="#quick-view">zoom</a>
 									</div>
 									<div class="share-tag clearfix">

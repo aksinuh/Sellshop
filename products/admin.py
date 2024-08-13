@@ -37,8 +37,9 @@ class Likeadmin(admin.ModelAdmin):
 
 @admin.register(Color)
 class Coloradmin(admin.ModelAdmin):
-    list_display = ["id", "name"]
+    list_display = ["id", "name", "hex_value"]
     list_display_links = ["name"]
+    
 
 
 @admin.register(Size)
@@ -49,13 +50,13 @@ class Sizeadmin(admin.ModelAdmin):
     
 @admin.register(ImageProduct)
 class ImageProductadmin(admin.ModelAdmin):
-    list_display = ["id"]
+    list_display = ["id", "product", "is_primary"]
     list_display_links = ["id"]
     
 
 @admin.register(Product)
 class Productadmin(admin.ModelAdmin):
-    list_display = ["id", "name"]
+    list_display = ["id", "name", "bestbrend"]
     list_display_links = ["name"]
     
     
