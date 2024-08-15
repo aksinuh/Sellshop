@@ -263,10 +263,18 @@
 						<div class="col-sm-6 col-md-offset-1 col-md-5">
 							<div class="newsletter get-touch">
 								<h3>get in touch</h3>
-								<form action="mail.php" method="post">
-									<input type="text" name="name" placeholder="Enter your Name..."/>
-									<input type="text" name="email" placeholder="Enter your email..."/>
-									<textarea name="message" rows="2" placeholder="Enter your message...."></textarea>
+								<form method="POST" action="{% url 'submit_contact' %}">
+									{% include "messages.html" %}
+									{% csrf_token %}
+									{% comment %} <input type="text" name="name" placeholder="Enter your Name..."/> {% endcomment %}
+									{{ contact_form.name}}
+									{{ form.name.errors }}
+									{% comment %} <input type="text" name="email" placeholder="Enter your email..."/> {% endcomment %}
+									{{ contact_form.email}}
+									{{ form.email.errors }}
+									{% comment %} <textarea name="message" rows="2" placeholder="Enter your message...."></textarea>  {% endcomment %}
+									{{ contact_form.message}}
+									{{ form.message.errors }}
 									<input type="submit" value="send your message"/>
 								</form>
 							</div>
