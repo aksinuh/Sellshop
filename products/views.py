@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import  ProductDetail, Product,SingleBlog,ProductCategory, Category,Brand,Size,Color,ImageProduct
+from .models import  ProductDetail, Product,SingleBlog,ProductCategory, Category,Brand,Size,Color,ImageProduct, get_product_rating,rating_count,Rating
 from orders.models import Wishlist
 from django.http import JsonResponse
+from django.db import models
 # Create your views here.
 def blog(request):
     blogs = SingleBlog.objects.all()
@@ -11,8 +12,14 @@ def blog(request):
     return render(request, "blog.html", context=context)
 
 def product_list(request):
+    products = ProductDetail.objects.all()
     bestbrend = Product.objects.first()
     all_brend = Brand.objects.all()
+    product_ratings_count = {
+        product.pk: Rating.objects.filter(product=product).count() for product in products
+    }
+
+    product_ratings = {product.pk: get_product_rating(product) for product in products}
     qrup = len(all_brend)// 2
     group1_brands = all_brend[:qrup]
     group2_brands = all_brend[qrup:]
@@ -21,9 +28,13 @@ def product_list(request):
         'group1_brands': group1_brands,
         'group2_brands': group2_brands,
         'bestbrend': bestbrend,
-        'sizes': sizes
+        'sizes': sizes,
+        'products': products,
+        'product_ratings': product_ratings,
+        'star_range': range(1, 6),
+        'product_ratings_count': product_ratings_count,
+
     }
-    
     return render(request, "product-list.html",context=context)
 
 def single_blog(request, id):
@@ -49,7 +60,9 @@ def single_blog(request, id):
 
 def single_product(request, id):
     detail = get_object_or_404(ProductDetail, id=id)
-    bestbrend = ProductDetail.objects.get(product__id=id)
+    rating = detail.average_rating()
+    star_range = range(1, 6)
+    rating_count = detail.rating_count()
     max_quantity = detail.gty
     quantity = 1
     error_message = ''
@@ -70,9 +83,11 @@ def single_product(request, id):
     
     context = {
         'detail': detail,
-        'bestbrend': bestbrend,
         'quantity': quantity,
-        'error_message': error_message
+        'error_message': error_message,
+        'rating': rating,
+        'star_range': star_range,
+        'rating_count': rating_count,
     }
     
     return render(request, "single-product.html", context=context)

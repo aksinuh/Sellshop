@@ -3,7 +3,7 @@ from .models import (
     BlogComment, SingleBlog,
     Product, ProductCategory, ProductDetail,
      Discount, Like, Color, Size, 
-    ImageProduct,  Category, Brand
+    ImageProduct,  Category, Brand,Rating
 )
 
 # Register your models here.
@@ -79,7 +79,12 @@ class Brandadmin(admin.ModelAdmin):
     
 
 @admin.register(ProductCategory)
-class Brandadmin(admin.ModelAdmin):
+class ProductCategoryadmin(admin.ModelAdmin):
     list_display = ["id", "name", "parent"]
     list_display_links = ["name"]
 
+
+@admin.register(Rating)
+class Ratingadmin(admin.ModelAdmin):
+    list_display = ["id", "product", "user", "score"]
+    list_display_links = ["user"]

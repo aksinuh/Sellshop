@@ -73,12 +73,14 @@
 									<h3>{{ detail.product.name}}</h3>
 									<span>{{ detail.category.name}}</span>
 									<div class="ratting floatright">
-										<p>( 27 Rating )</p>
-										<i class="mdi mdi-star"></i>
-										<i class="mdi mdi-star"></i>
-										<i class="mdi mdi-star"></i>
-										<i class="mdi mdi-star-half"></i>
-										<i class="mdi mdi-star-outline"></i>
+										<p>({{ rating_count }} Rating{{ rating_count|pluralize }})</p>
+											{% for i in star_range %}
+												{% if i <= rating %}
+													<i class="mdi mdi-star"></i>
+												{% else %}
+													<i class="mdi mdi-star-outline"></i>
+												{% endif %}
+											{% endfor %}
 									</div>
 									{% if detail.discount%}
 									<h5><del>$ {{detail.price}}</del> $ {{ detail.discounted_price}}</h5>

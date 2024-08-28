@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from decimal import Decimal
 from django.utils import timezone
+from django.db.models import Avg
+from django.shortcuts import render
 # Create your models here.
 User = get_user_model()
 
@@ -90,12 +92,28 @@ class ProductDetail(models.Model):
     def __str__(self) -> str:
         return self.product.name
     
+    def average_rating(self):
+        ratings = Rating.objects.filter(product=self)
+        if ratings.exists():
+            return ratings.aggregate(models.Avg('score'))['score__avg']
+        return 0
+
+    def full_star_count(self):
+        return int(self.average_rating())
+
+    def empty_star_count(self):
+        return 5 - (self.full_star_count() + self.half_star_count())
+    
+    def rating_count(self):
+        return Rating.objects.filter(product=self).count()
+    
 class Category(models.Model):
     name = models.CharField( max_length=100)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, related_name="sub_categorys", null=True, blank=True)
     
     def __str__(self) -> str:
         return self.name 
+    
     
 class Brand(models.Model):
     name = models.CharField(max_length=50)
@@ -111,3 +129,37 @@ class ProductCategory(models.Model):
     def __str__(self) -> str:
         return self.name
     
+    
+class Rating(models.Model):
+    product = models.ForeignKey(ProductDetail, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)])  # Reytinq balı (1-dən 5-ə qədər)
+    comment = models.TextField(blank=True, null=True)  # İstəyə bağlı şərh
+
+    class Meta:
+        unique_together = ('user', 'product') 
+
+    
+
+def get_product_rating(product):
+    ratings = Rating.objects.filter(product=product)
+    if ratings.exists():
+        return ratings.aggregate(Avg('score'))['score__avg'] or 0
+    return 0
+
+def product_list(request):
+    products = ProductDetail.objects.all()
+    product_ratings = {product.pk: get_product_rating(product.pk) for product in products}
+    star_range = range(1, 6)  # 1-dən 5-ə qədər olan ulduzlar
+    return render(request, "product-list.html", {"products": products, "product_ratings": product_ratings, "star_range": star_range})
+
+
+def average_rating(self):
+    ratings = Rating.objects.filter(product=self)
+    if ratings.exists():
+        avg_rating = ratings.aggregate(models.Avg('score'))['score__avg']
+        return round(avg_rating, 1)  # Rəqəmsal dəyəri 1 onluq yerinə yuvarlaqlaşdırın
+    return 0
+
+def rating_count(self):
+    return Rating.objects.filter(product=self).count()
