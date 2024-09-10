@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.utils import timezone
 from django.db.models import Avg
 from django.shortcuts import render
+from django.core.exceptions import ValidationError
 # Create your models here.
 User = get_user_model()
 
@@ -63,9 +64,28 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="image_product")
     bestbrend = models.BooleanField(default=False)
-    
+    new_collection = models.BooleanField(default=False)
+    collection_image =  models.ImageField(upload_to="collection_image",null= True, blank= True)
     def __str__(self) -> str:
         return self.name
+    
+    def clean(self):
+        # Bestbrend üçün yalnız bir məhsulun true olmasına icazə verilir
+        if self.bestbrend:
+            existing_bestbrend = Product.objects.filter(bestbrend=True).exclude(pk=self.pk)
+            if existing_bestbrend.exists():
+                raise ValidationError("Yalnız bir məhsul bestbrend ola bilər.")
+
+        # New_collection üçün yalnız iki məhsulun true olmasına icazə verilir
+        if self.new_collection:
+            existing_new_collection = Product.objects.filter(new_collection=True).exclude(pk=self.pk)
+            if existing_new_collection.count() >= 2:
+                raise ValidationError("Yalnız iki məhsul yeni kolleksiya ola bilər.")
+
+    def save(self, *args, **kwargs):
+        # Validasiya üçün save metodu daxilində clean çağırırıq
+        self.clean()
+        super(Product, self).save(*args, **kwargs)
     
     
 class ProductDetail(models.Model):

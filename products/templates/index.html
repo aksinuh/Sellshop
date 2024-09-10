@@ -6,73 +6,98 @@
 		{% endblock  %}
 
 		{% block "content" %}
+		
 		<div class="main-slider-one main-slider-two slider-area">
 			<div id="wrapper">
 				<div class="slider-wrapper">
+		
 					<div id="mainSlider" class="nivoSlider">
-						<img src="{% static 'img/slider/home2/1.jpg' %}" alt="main slider" title="#htmlcaption"/>
-						<img src="{% static 'img/slider/home2/2.jpg' %}" alt="main slider" title="#htmlcaption2"/>
+						{% for product in products %}
+							{% if product.product.new_collection %}
+								<img src="{{ product.product.collection_image.url }}" alt="main slider" title="#htmlcaption{{ forloop.counter }}"/>
+							{% endif %}
+						{% endfor %}
 					</div>
-					<div id="htmlcaption" class="nivo-html-caption slider-caption">
-						<div class="container">
-							<div class="slider-left slider-right">
-								<div class="slide-text animated zoomInUp">
-									<h3>new collection</h3>
-									<h1>Men’s Fashion 2016</h1>
-								</div>
-								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="shop.html">Shop now</a>
+		
+					{% for product in products %}
+						{% if product.product.new_collection %}
+							<div id="htmlcaption{{ forloop.counter }}" class="nivo-html-caption slider-caption">
+								<div class="container">
+									<div class="slider-left slider-right">
+										<div class="slide-text animated zoomInUp">
+											<h3>New Collection</h3>
+											<h1>{{ product.category }} 2024</h1>
+										</div>
+										<div class="animated slider-btn fadeInUpBig">
+											<a class="shop-btn" href="{% url 'single_product' product.id %}">Shop Now</a>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div id="htmlcaption2" class="nivo-html-caption slider-caption">
+						{% endif %}
+					{% endfor %}
+					{% for product in products %}
+						{% if product.product.new_collection %}
+					<!-- Optional: Another static caption or more looped captions -->
+					<div id="htmlcaption2{{ forloop.counter }}" class="nivo-html-caption slider-caption">
 						<div class="container">
 							<div class="slider-left two-caption-text slider-right">
 								<div class="slide-text animated zoomInUp">
-									<h3>new collection</h3>
-									<h1>Men’s Fashion 2016</h1>
-									<span>Starting at $65.00. Don’t miss out!</span>
+									<h3>New Collection</h3>
+									<h1>{{ product.category }} 2024</h1>
+									
+											<span>$ {{ product.discounted_price }}</span>
+											
+											<span>$ {{ product.price }}</span>
+											
+									{% if product.discount%}		
+									<span>Starting at $ {{ product.discounted_price }}. Don’t miss out!</span>
+									{% else %}
+									<span>Starting at $ {{ product.price }} </span>. Don’t miss out!</span>
+									{% endif %}
 								</div>
 								<div class="one-p animated bounceInLeft">
 									<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum".</p>
 								</div>
 								<div class="animated slider-btn fadeInUpBig">
-									<a class="shop-btn" href="shop.html">Shop now</a>
+									<a class="shop-btn" href="shop.html">Shop Now</a>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>							
+						{% endif %}
+					{% endfor %}
+				</div>
 			</div>
 		</div>
+		
         <!-- collection section start -->
 		<section class="collection-area collection-area2 section-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="single-colect banner collect-one">
-							<a href="#"><img src="{% static 'img/collect/4.jpg' %}" alt="" /></a>
+							<a href="{% url "single_product" products_with_discount.0.id %}"><img src="{{ products_with_discount.0.product.image.url }}" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="colect-text ">
-							<h4><a href="#">Fashion Collection 2016</a></h4>
-							<h5>big sale of the men 2016 fashion <br /> Up To 23% Off!</h5>
-							<a href="#">Shop Now <i class="mdi mdi-arrow-right"></i></a>
+							<h4><a href="#">{{ products_with_discount.0.brend }} Collection 2024</a></h4>
+							<h5>big sale of the {{ products_with_discount.0.category }} 2024 {{ products_with_discount.0.brend }} <br /> Up To {{ products_with_discount.0.discount.rate}} % Off!</h5>
+							<a href="{% url "single_product" products_with_discount.0.id %}">Shop Now <i class="mdi mdi-arrow-right"></i></a>
 						</div>
 						<div class="collect-img banner margin single-colect">
-							<a href="#"><img src="{% static 'img/collect/5.jpg' %}" alt="" /></a>
+							<a href="{% url "single_product" products_with_discount.1.id %}"><img src="{{ products_with_discount.1.product.image.url }}" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="collect-img banner single-colect">
-							<a href="#"><img src="{% static 'img/collect/6.jpg' %}" alt="" /></a>
+							<a href="{% url "single_product" products_with_discount.2.id %}"><img src="{{ products_with_discount.2.product.image.url }}" alt="" /></a>
 						</div>
 						<div class="colect-text ">
-							<h4><a href="#">Men’s Collection 2016</a></h4>
-							<p>There are many variations of passages of Lorem Ipsum avalabbut the majority have suffered alteration in some form.</p>
-							<a href="#">Shop Now <i class="mdi mdi-arrow-right"></i></a>
+							<h4><a href="#">{{ products_with_discount.1.brend }} Collection 2016</a></h4>
+							<p>{{ products_with_discount.1.description|truncatewords:20 }}</p>
+							<a href="{% url "single_product" products_with_discount.1.id %}">Shop Now <i class="mdi mdi-arrow-right"></i></a>
 						</div>
 					</div>
 				</div>

@@ -56,7 +56,7 @@ class ImageProductadmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class Productadmin(admin.ModelAdmin):
-    list_display = ["id", "name", "bestbrend"]
+    list_display = ["id", "name", "bestbrend", "new_collection"]
     list_display_links = ["name"]
     
     
