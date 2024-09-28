@@ -22,9 +22,6 @@ function updateQuantity(change) {
         qty = 1;
     }
     qtyInput.value = qty;
-}
 
-function submitWishlistForm() {
-    document.getElementById('wishlist-form').submit();
-}
+};
 

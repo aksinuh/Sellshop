@@ -163,95 +163,111 @@
 		<section class="coming-product coming-product2">
 			<div class="container">
 				<div class="row">
+					<!-- Tab menu (məhsul şəkilləri) -->
 					<div class="col-sm-4 col-md-2">
 						<div class="tab-menu nav nav-tabs padding">
 							<ul>
-								<li class="active"><a href="#dress1" data-toggle="tab" data-target="#dress1, #text1"><img src="{% static 'img/coming/s1.jpg' %}" alt="" /></a></li>
-								<li><a href="#dress2" data-toggle="tab" data-target="#dress2,#text2"><img src="{% static 'img/coming/s2.jpg' %}" alt="" /></a></li>
+								{% for product in discounted_products %}
+									<li class="{% if forloop.first %}active{% endif %}">
+										<a href="#dress{{ forloop.counter }}" data-toggle="tab" data-target="#dress{{ forloop.counter }}">
+											<img src="{{ product.image_small.url }}" alt="{{ product.product.name }}" />
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
+		
+					<!-- Böyük şəkil və geri sayım -->
 					<div class="col-sm-7 col-md-5">
 						<div class="text-center large-img tab-content">
-							<div class="tab-pane fade in active" id="dress1">
-								<img src="{% static 'img/coming/l1.jpg' %}" alt="" />
-								<div class="count-text clearfix">
-									<ul id="countdown-1">
-										<li>
-											<p class="timeRefDays timedescription">days</p>
-											<span class="days timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefHours timedescription">hrs</p>
-											<span class="hours timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefMinutes timedescription">mins</p>
-											<span class="minutes timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefSeconds timedescription">secs</p>
-											<span class="seconds timenumbers">00</span>
-										</li>
-									</ul>
+							{% for product in discounted_products %}
+								<div class="tab-pane fade {% if forloop.first %}in active{% endif %}" id="dress{{ forloop.counter }}">
+									<img src="{{ product.image_large.url }}" alt="{{ product.product.name }}" />
+									<div class="count-text clearfix">
+										<ul id="countdown-{{ forloop.counter }}">
+											<li><p class="timeRefDays timedescription">days</p><span class="days timenumbers">{{ product.countdown_days }}</span></li>
+											<li><p class="timeRefHours timedescription">hrs</p><span class="hours timenumbers">{{ product.countdown_hours }}</span></li>
+											<li><p class="timeRefMinutes timedescription">mins</p><span class="minutes timenumbers">{{ product.countdown_minutes }}</span></li>
+											<li><p class="timeRefSeconds timedescription">secs</p><span class="seconds timenumbers">{{ product.countdown_seconds }}</span></li>
+										</ul>
+									</div>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="dress2">
-								<img src="{% static 'img/coming/l2.jpg' %}" alt="" />
-								<div class="count-text clearfix">
-									<ul id="countdown-2">
-										<li>
-											<p class="timeRefDays timedescription">days</p>
-											<span class="days timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefHours timedescription">hrs</p>
-											<span class="hours timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefMinutes timedescription">mins</p>
-											<span class="minutes timenumbers">00</span>
-										</li>
-										<li>
-											<p class="timeRefSeconds timedescription">secs</p>
-											<span class="seconds timenumbers">00</span>
-										</li>
-									</ul>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
 					</div>
+		
+					<!-- Məhsulun təfərrüatları -->
 					<div class="col-sm-12 col-md-5">
 						<div class="padding">
-							<div class="tab-content" >
-								<div class="single-coming tab-pane fade in active" id="text1">
-									<h4><a href="#">The Maker usc Dress</a></h4>
-									<span><strong>$569.00</strong>   <del>$669.00</del></span>
-									<p class="come-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does eiusmodes tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venim, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoes tempor incididunt ut labore et dolore magna aliqua. consequat. Ut enim ad minim veniam.</p>
-									<ul class="color-size">
-										<li><span>Size</span><strong>:</strong> <a href="#">SL</a><a href="#">ML</a><a href="#">Xl</a></li>
-										<li><span>color</span><strong>:</strong> <a href="#">Red</a><a href="#">Grean</a><a href="#">Blue</a></li>
-										<li><span>Brand</span><strong>:</strong>Crazy Fashion</li>
-										<li><span>category</span><strong>:</strong>Fashion   Men’s</li>
-									</ul>
-								</div>
-								<div class="single-coming tab-pane fade" id="text2">
-									<h4><a href="#">The Maker usc Dress</a></h4>
-									<span><strong>$569.00</strong>   <del>$669.00</del></span>
-									<p class="come-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does eiusmodes tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venim, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoes tempor incididunt ut labore et dolore magna aliqua. consequat. Ut enim ad minim veniam.</p>
-									<ul class="color-size">
-										<li><span>Size</span><strong>:</strong> <a href="#">SL</a><a href="#">ML</a><a href="#">Xl</a></li>
-										<li><span>color</span><strong>:</strong> <a href="#">Red</a><a href="#">Grean</a><a href="#">Blue</a></li>
-										<li><span>Brand</span><strong>:</strong>Crazy Fashion</li>
-										<li><span>category</span><strong>:</strong>Fashion   Men’s</li>
-									</ul>
-								</div>
+							<div class="tab-content">
+								{% for product in discounted_products %}
+									<div class="single-coming tab-pane fade {% if forloop.first %}in active{% endif %}" id="text{{ forloop.counter }}">
+										<h4><a href="#">{{ product.product.name }}</a></h4>
+										<span><strong>${{ product.new_price }}</strong> <del>${{ product.price }}</del></span>
+										<p class="come-p">{{ product.description }}</p>
+										<ul class="color-size">
+											<li>
+												<span>Size</span><strong>:</strong>
+												{% for size in product.size.all %}
+													<a href="#" class="size-option">{{ size.name }}</a>
+												{% endfor %}
+											</li>
+											<li>
+												<span>Color</span><strong>:</strong>
+												{% for color in product.color.all %}
+												<a href="#" class="size-option">{{ color.name }}</a>
+												{% endfor %}
+											</li>
+											<li><span>Brand</span><strong>:</strong>{{ product.brend.name }}</li>
+											<li><span>Category</span><strong>:</strong>{{ product.category.name }}</li>
+										</ul>
+									</div>
+								{% endfor %}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		
+		<!-- JavaScript Geri Sayım -->
+		<script>
+			function startCountdown(id, days, hours, minutes, seconds) {
+				const countdownDate = new Date();
+				countdownDate.setDate(countdownDate.getDate() + days);
+				countdownDate.setHours(countdownDate.getHours() + hours);
+				countdownDate.setMinutes(countdownDate.getMinutes() + minutes);
+				countdownDate.setSeconds(countdownDate.getSeconds() + seconds);
+		
+				const countdownElement = document.getElementById(id);
+				const interval = setInterval(function () {
+					const now = new Date().getTime();
+					const distance = countdownDate - now;
+		
+					if (distance < 0) {
+						clearInterval(interval);
+						countdownElement.innerHTML = "EXPIRED";
+					} else {
+						const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+						const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+						const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+						const s = Math.floor((distance % (1000 * 60)) / 1000);
+		
+						countdownElement.querySelector(".days").innerHTML = d;
+						countdownElement.querySelector(".hours").innerHTML = h;
+						countdownElement.querySelector(".minutes").innerHTML = m;
+						countdownElement.querySelector(".seconds").innerHTML = s;
+					}
+				}, 1000);
+			}
+		
+			document.addEventListener("DOMContentLoaded", function() {
+				{% for product in discounted_products %}
+					startCountdown("countdown-{{ forloop.counter }}", {{ product.countdown_days }}, {{ product.countdown_hours }}, {{ product.countdown_minutes }}, {{ product.countdown_seconds }});
+				{% endfor %}
+			});
+		</script>
         <!-- coming product section end -->
         <!-- tab-products section start -->
 		<div class="tab-products single-products products-two section-padding extra-padding-top">

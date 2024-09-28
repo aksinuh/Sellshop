@@ -95,6 +95,7 @@ def single_product(request, id):
 def home(request):
     products = ProductDetail.objects.all()
     blogs = SingleBlog.objects.all()
+    discounted_products = ProductDetail.objects.filter(on_sale=True)[:2]
     # new_collection = Product.objects.filter(new_collection = True)
     products_with_discount = ProductDetail.objects.filter(discount__isnull=False).order_by('-discount__rate')[:3]
     
@@ -102,7 +103,8 @@ def home(request):
         'products': products,
         'blogs': blogs,
         # 'new_collection': new_collection,
-        'products_with_discount': products_with_discount
+        'products_with_discount': products_with_discount,
+        'discounted_products': discounted_products
 
     }
     return render(request,"index.html", context=context)

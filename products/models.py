@@ -101,6 +101,15 @@ class ProductDetail(models.Model):
     brend = models.ForeignKey("Brand", on_delete= models.CASCADE, related_name= "brand",null= True, blank=True)
     tag = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image_small = models.ImageField(upload_to='products_countdown/', null=True, blank=True)
+    image_large = models.ImageField(upload_to='products_countdown/', null=True, blank=True)
+    new_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    countdown_days = models.IntegerField( null=True, blank=True)
+    countdown_hours = models.IntegerField( null=True, blank=True)
+    countdown_minutes = models.IntegerField( null=True, blank=True)
+    countdown_seconds = models.IntegerField( null=True, blank=True)
+    on_sale = models.BooleanField(default=False)  # Endirimdə olub-olmaması üçün sahə
+
     
 
     def discounted_price(self):
